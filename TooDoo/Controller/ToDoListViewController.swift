@@ -91,7 +91,12 @@ class ToDoListViewController: UITableViewController {
     }
     
     func loadItems() {
-        let request : NSFetchRequest<Item>
+        let request : NSFetchRequest<Item> = Item.fetchRequest()
+        do {
+            itemArray = try context.fetch(request)
+        } catch {
+            print("Error fetching data from load items \(error)")
+        }
     }
 }
 
