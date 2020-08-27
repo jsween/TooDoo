@@ -42,6 +42,13 @@ class ToDoListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+//        Update Example
+//        itemArray[indexPath.row].setValue("Some Text to Change to", forKey: "title")
+        
+//        Delete Example
+//        context.delete(itemArray[indexPath.row])
+//        itemArray[indexPath.row].remove(at: indexPath.row)
+        
         itemArray[indexPath.row].done = !itemArray[indexPath.row].done
         
         self.saveItems()
