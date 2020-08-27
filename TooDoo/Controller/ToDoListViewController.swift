@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import CoreData
 
 class ToDoListViewController: UITableViewController {
 
     var itemArray = [Item]()
-    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 //    let defaults = UserDefaults.standard // If want to save any simple user defaults
     
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
@@ -58,7 +59,10 @@ class ToDoListViewController: UITableViewController {
             // what will happen once the user adds the add item in the UI Alert
             if(textField.text != "") {
                 
-                self.itemArray.append(Item(title: textField.text!))
+                
+                let newItem = Item(context: self.context)
+                newItem.title = textField.text!
+                newItem.done = false
                 
                 self.saveItems()
             }
@@ -77,27 +81,17 @@ class ToDoListViewController: UITableViewController {
     
     // MARK: - Model Manipulation Methods
     func saveItems() {
-        let encoder = PropertyListEncoder()
-        
         do {
-            let data = try encoder.encode(itemArray)
-            try data.write(to: dataFilePath!)
+            try context.save()
         } catch {
-            print("Error encoding item array, \(error)")
+            print("Error saving context in save items \(error)")
         }
         
         self.tableView.reloadData()
     }
     
     func loadItems() {
-        if let data = try? Data(contentsOf: dataFilePath!) {
-            let decoder = PropertyListDecoder()
-            do {
-                itemArray = try decoder.decode([Item].self, from: data)
-            } catch {
-                print("Error decoding Item array, \(error)")
-            }
-        }
+        let request : NSFetchRequest<Item>
     }
 }
 
