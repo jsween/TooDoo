@@ -65,15 +65,13 @@ class ToDoListViewController: UITableViewController {
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             // what will happen once the user adds the add item in the UI Alert
             if(textField.text != "") {
-                
-                
                 let newItem = Item(context: self.context)
                 newItem.title = textField.text!
                 newItem.done = false
+                self.itemArray.append(newItem)
                 
                 self.saveItems()
             }
-            
         }
         
         alert.addTextField { (alertTF) in
@@ -115,5 +113,15 @@ extension ToDoListViewController : UISearchBarDelegate {
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
         
         loadItems(with: request)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            loadItems()
+            
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
     }
 }
