@@ -18,8 +18,6 @@ class CategoryViewController: SwipeTableViewController {
         super.viewDidLoad()
         
         loadCategories()
-        
-        tableView.rowHeight = 80.0
     }
     
     
@@ -64,14 +62,11 @@ class CategoryViewController: SwipeTableViewController {
                 self.save(newCategory: newCat)
             }
         }
-        
         alert.addAction(action)
-        
         alert.addTextField { (alertTF) in
             alertTF.placeholder = "New TooDoo Category"
             textField = alertTF
         }
-        
         present(alert, animated: true, completion: nil)
     }
     
@@ -83,11 +78,13 @@ class CategoryViewController: SwipeTableViewController {
                 realm.add(newCategory)
             }
         } catch {
-            print("Error saving context in save items \(error)")
+            print("Error saving in save, \(error)")
         }
         
         self.tableView.reloadData()
     }
+    
+    // MARK: -  Model Manipulation Methods
     
     func loadCategories() {
         categories = realm.objects(Category.self)

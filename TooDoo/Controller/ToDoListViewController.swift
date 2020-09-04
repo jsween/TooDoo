@@ -9,22 +9,21 @@
 import UIKit
 import RealmSwift
 
-class ToDoListViewController: UITableViewController {
+class ToDoListViewController: SwipeTableViewController {
     
-    var todoItems: Results<Item>?
     let realm = try! Realm()
+    var todoItems: Results<Item>?
     var selectedCategory : Category? {
         didSet{
             loadItems()
         }
     }
-    //    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext // CoreData
-    //    let defaults = UserDefaults.standard // If want to save any simple user defaults
     
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     // MARK: - TableView Datasource Methods
@@ -34,7 +33,7 @@ class ToDoListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.reuseableCellId, for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         if let item = todoItems?[indexPath.row] {
             cell.textLabel?.text = item.title
             
@@ -53,8 +52,6 @@ class ToDoListViewController: UITableViewController {
         if let item = todoItems?[indexPath.row] {
             do {
                 try realm.write {
-//                    Delete example
-//                    realm.delete(item)
                     item.done = !item.done
                 }
             } catch {
@@ -84,7 +81,6 @@ class ToDoListViewController: UITableViewController {
                             let newItem = Item()
                             newItem.title = textField.text!
                             newItem.done = false
-                            print(newItem.dateCreated)
                             currentCategory.items.append(newItem)
                         }
                     } catch {
@@ -113,7 +109,24 @@ class ToDoListViewController: UITableViewController {
         
         tableView.reloadData()
     }
+    
+    // MARK: - Delete Data From Swipe
+    
+    override func updateModel(at indexPath: IndexPath) {
+        if let itemForDeletion = self.todoItems?[indexPath.row] {
+            do {
+                try self.realm.write {
+                    self.realm.delete(itemForDeletion)
+                }
+            } catch {
+                print("Error deleting item, \(error)")
+            }
+        }
+    }
+
 }
+
+// MARK: - UI Search Bar Delegate
 
 extension ToDoListViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
