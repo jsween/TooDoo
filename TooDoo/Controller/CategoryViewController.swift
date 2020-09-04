@@ -22,6 +22,14 @@ class CategoryViewController: SwipeTableViewController {
         tableView.separatorStyle = .none
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        guard let navBar = navigationController?.navigationBar else {
+            fatalError("Navigation Controller does not exist yet")
+        }
+        
+        navBar.backgroundColor = UIColor(hexString: "1D9BF6")
+        navBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+    }
     
     // MARK: - TableView Datasource Methods
     

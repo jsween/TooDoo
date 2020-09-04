@@ -14,6 +14,7 @@ class ToDoListViewController: SwipeTableViewController {
     
     let realm = try! Realm()
     var todoItems: Results<Item>?
+    @IBOutlet weak var searchBar: UISearchBar!
     var selectedCategory : Category? {
         didSet{
             loadItems()
@@ -25,6 +26,23 @@ class ToDoListViewController: SwipeTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.separatorStyle = .none
+        }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let hexColor = selectedCategory?.color {
+            
+            guard let navBar = navigationController?.navigationBar else {
+                fatalError("Navigation Controller does not exist yet")
+            }
+            
+            if let navBarColor = UIColor(hexString: hexColor) {
+                navBar.backgroundColor = navBarColor
+                navBar.tintColor = ContrastColorOf(navBarColor, returnFlat: true)
+                searchBar.barTintColor = navBarColor
+                navBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : ContrastColorOf(navBarColor, returnFlat: true)]
+            }
+        }
     }
     
     // MARK: - TableView Datasource Methods
@@ -44,8 +62,6 @@ class ToDoListViewController: SwipeTableViewController {
                 
                 print(CGFloat(indexPath.row) / CGFloat(todoItems!.count))
             }
-            
-            
             
             cell.accessoryType = item.done ? .checkmark : .none
         } else {
