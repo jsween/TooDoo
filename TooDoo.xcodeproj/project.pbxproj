@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5BE573694E9702CFB2832485 /* Pods_TooDoo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D68E148CE6E94D4734E73D56 /* Pods_TooDoo.framework */; };
 		F232E1D624FD418B003DAC41 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F232E1D524FD418B003DAC41 /* CategoryViewController.swift */; };
+		F259B0D92502A4F7009CA8EC /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F259B0D82502A4F7009CA8EC /* SwipeTableViewController.swift */; };
 		F2BBD82924EA464600F7C444 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BBD82824EA464600F7C444 /* AppDelegate.swift */; };
 		F2BBD82B24EA464600F7C444 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BBD82A24EA464600F7C444 /* SceneDelegate.swift */; };
 		F2BBD82D24EA464600F7C444 /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BBD82C24EA464600F7C444 /* ToDoListViewController.swift */; };
@@ -25,6 +26,7 @@
 		B522760ECF87B59452ACCE70 /* Pods-TooDoo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TooDoo.debug.xcconfig"; path = "Target Support Files/Pods-TooDoo/Pods-TooDoo.debug.xcconfig"; sourceTree = "<group>"; };
 		D68E148CE6E94D4734E73D56 /* Pods_TooDoo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TooDoo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F232E1D524FD418B003DAC41 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		F259B0D82502A4F7009CA8EC /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		F2BBD82524EA464600F7C444 /* TooDoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TooDoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2BBD82824EA464600F7C444 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2BBD82A24EA464600F7C444 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			children = (
 				F232E1D524FD418B003DAC41 /* CategoryViewController.swift */,
 				F2BBD82C24EA464600F7C444 /* ToDoListViewController.swift */,
+				F259B0D82502A4F7009CA8EC /* SwipeTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F259B0D92502A4F7009CA8EC /* SwipeTableViewController.swift in Sources */,
 				F2BBD82D24EA464600F7C444 /* ToDoListViewController.swift in Sources */,
 				F2BBD82924EA464600F7C444 /* AppDelegate.swift in Sources */,
 				F2BBD82B24EA464600F7C444 /* SceneDelegate.swift in Sources */,

@@ -9,10 +9,12 @@
 import Foundation
 
 struct K {
-    static let reuseableCellId = "ToDoItemCell"
-    static let catReuseableCellId = "CategoryCell"
+    static let reuseableCellId = "Cell"
     static let toDoListArrayKey = "ToDoListArray"
     
     // Segue Identifiers
     static let goToItemsSegue = "goToItems"
+    
+    // Assets
+    static let deleteIcon = "delete-icon"
 }
